@@ -10,21 +10,23 @@ const Home = () => {
 
     const allButtons = ['All', ...new Set(myData.map((item)=> item.author))]
 
-    const [buttons, setButtons] = useState([allButtons])
+    // const [buttons, setButtons] = useState([allButtons])
 
 
     useEffect(()=>{
         axios.get('https://inshorts.deta.dev/news?category=science')
-        .then(res=> setMyData(res.data.data))
+        .then(res=> {
+            setMyData(res.data.data)
+        })
     },[])
 
     const filterCategory = (category)=>{
-        if(category == 'All'){
+        if(category === 'All'){
             setMyData(myData)
             // return
         }
 
-        const filteredData = myData.filter((item)=> item.author == category)
+        const filteredData = myData.filter((item)=> item.author === category)
         setMyData(filteredData)
     }
 

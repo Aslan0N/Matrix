@@ -6,7 +6,7 @@ const FilterButtons = ({allButtons, filterCategory}) => {
     {
         allButtons.map((button, index)=>{
             return (
-                <button onClick={()=> filterCategory(button)} key={index} >{button}</button>
+                <button onClick={()=> filterCategory(button)}  >{button}</button>
             )
         })
     }
