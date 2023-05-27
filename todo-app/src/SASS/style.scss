@@ -146,5 +146,15 @@ body,* {
                 }
             }
         }
+        button{
+            outline: none;
+            border: none;
+            background-color: #19547b;
+            border-radius: 38px 38px;
+            padding: 2px 10px;
+            color: #ffd89b;
+            font-size: 13px;
+            font-weight:400;
+        }
     }
 }
