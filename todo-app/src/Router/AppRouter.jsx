@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "../Common/Header";
 import Home from '../Pages/Home';
 import About from '../Pages/About';
-import Todo from '../Pages/Todo';
+import Alternative from '../Pages/Alternative';
 
 const AppRouter = () => {
   return (
@@ -13,7 +13,7 @@ const AppRouter = () => {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About/>} />
-          <Route path='/todo' element={<Todo/>} />
+          <Route path='/alternative' element={<Alternative/>} />
         </Routes>
       </BrowserRouter>
     </>

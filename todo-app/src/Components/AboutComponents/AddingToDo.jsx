@@ -5,9 +5,7 @@ const AddingToDo = ({ myTodos, setMyTodos }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    if (todos === "") {
-      alert("Please fill a todo");
-    }
+   
     setMyTodos([...myTodos, todos]);
     setTodos("");
     console.log(myTodos);
@@ -28,7 +26,7 @@ const AddingToDo = ({ myTodos, setMyTodos }) => {
             onChange={(e) => setTodos(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" disabled={!todos} className="btn btn-primary">
           Submit
         </button>
       </form>
