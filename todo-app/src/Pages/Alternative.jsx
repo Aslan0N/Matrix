@@ -6,6 +6,7 @@ const Alternative = () => {
       ? JSON.parse(localStorage.getItem("myTodos"))
       : []
   );
+  const [icon, setIcon] = useState(false)
 
   useEffect(() => {
     localStorage.setItem("myTodo", JSON.stringify("todos"));
@@ -24,14 +25,9 @@ const Alternative = () => {
   const clearAll = ()=>{
     setTodos([])
   }
-  let editItem = true
-  const editTodo = (item)=>{
-           if(editItem == false){
-            item = true
-           }else{
-            item = false
-           }
-           console.log('test');
+  let editItem = false
+  const editTodo = ()=>{
+           setIcon((prev)=> !prev)
   }
 
   return (
@@ -50,8 +46,8 @@ const Alternative = () => {
             {todos.map((todo, index) => {
               return (
                 <li key={index}>
-                  {todo}
-                  <button onClick={()=> editTodo(editItem)} className={`fa-solid ${editItem ? "fa-pen-to-square" : "fa-check" }`}></button>
+                  <input type="text" value={todo} disabled={icon ? 'disabled' : ''} />
+                  <button onClick={editTodo} className={ icon ? "fa-solid  fa-pen-to-square" : "fa-solid fa-check"}></button>
                   <button onClick={() => deleteTodo(todo)}>x</button>
                 </li>
               );

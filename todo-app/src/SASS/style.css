@@ -132,7 +132,7 @@ body, * {
 }
 #alternative .todo-con ul li {
   list-style: none;
-  width: 90%;
+  width: 100%;
   padding: 5px 10px;
   border: 1px solid #ccc;
   margin-top: 10px;
@@ -140,6 +140,13 @@ body, * {
   display: flex;
   justify-content: space-between;
   border-radius: 9px;
+  align-items: center;
+}
+#alternative .todo-con ul li input {
+  width: auto;
+  outline: none;
+  border: none;
+  background-color: #fff;
 }
 #alternative .todo-con ul li button {
   outline: none;
@@ -149,6 +156,7 @@ body, * {
   padding: 0 9px 5px 9px;
   color: #fff;
   font-weight: 600;
+  width: auto;
 }
 #alternative .todo-con button {
   outline: none;
@@ -159,4 +167,5 @@ body, * {
   color: #ffd89b;
   font-size: 13px;
   font-weight: 400;
+  width: auto;
 }/*# sourceMappingURL=style.css.map */
