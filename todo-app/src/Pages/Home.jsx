@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import FilterButtons from '../Components/HomeComponents/FilterButtons'
-import FilterMenu from '../Components/HomeComponents/FilterMenu'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Home = () => {
+    const categories = ['all', 'business', 'sports', 'world', 'politics', 'technology', 'startup',
+    'entertainment', 'miscellaneous', 'hatke', 'science','automobile']
 
-    
-    const [myData, setMyData] = useState([])
+    const [data, setData] = useState([])
+    const [load, setLoad] = useState(false)
+ 
+    const filterCategory = (category) =>{
 
-    const allButtons = ['All', ...new Set(myData.map((item)=> item.author))]
+        axios.get(`https://inshorts.deta.dev/news?category=${category}`)
+        .then(res=>{
+             setData(res.data.data)
+             setLoad(true)
+            })
+            setLoad(false)
+        
 
-    // const [buttons, setButtons] = useState([allButtons])
-
-
-    useEffect(()=>{
-        axios.get('https://inshorts.deta.dev/news?category=science')
-        .then(res=> {
-            setMyData(res.data.data)
-        })
-    },[])
-
-    const filterCategory = (category)=>{
-        if(category === 'All'){
-            setMyData(myData)
-            // return
-        }
-
-        const filteredData = myData.filter((item)=> item.author === category)
-        setMyData(filteredData)
     }
-
 
   return (
     <>
-        <FilterButtons allButtons={allButtons} filterCategory={filterCategory}  />
-        <FilterMenu myData={myData} />
+        <section>
+            {
+                categories.map((category,index)=>{
+                    return <button className='btn btn-warning m-2 text-white fw-bold' key={index} onClick={()=> filterCategory(category)}>{category}</button>
+                })
+            }
+        </section>
+        <section>
+            {
+               !load ? 'La bi dur açılaaayi..' :  data.map((item,index)=>{
+                   return <img width={150} className='m-3' key={index} src={item.imageUrl} alt="" />
+                })
+            }
+        </section>
     </>
   )
 }
