@@ -6,7 +6,7 @@ const About = () => {
   const [myTodos, setMyTodos] = useState(localStorage.getItem("myTodos")? JSON.parse(localStorage.getItem("myTodos")):[]);
 
   useEffect(()=>{
-    localStorage.setItem("myTodos",JSON.stringify("myTodos"))
+    localStorage.setItem("myTodos",JSON.stringify(myTodos))
   },[myTodos])
 
   return (

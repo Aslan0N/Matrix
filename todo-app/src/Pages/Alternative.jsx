@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 const Alternative = () => {
-  const [todos, setTodos] = useState(
-    localStorage.getItem("myTodo")
-      ? JSON.parse(localStorage.getItem("myTodos"))
-      : []
-  );
-  const [icon, setIcon] = useState(false)
-
+  const [todos, setTodos] = useState(localStorage.getItem("todos")? JSON.parse(localStorage.getItem("todos")): []);
+  
   useEffect(() => {
-    localStorage.setItem("myTodo", JSON.stringify("todos"));
+    localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
+
+  
   const [todo, setTodo] = useState("");
+  
+  const [icon, setIcon] = useState(false)
 
   const submitForm = (e) => {
     e.preventDefault();
-    setTodos([...todos, todo]);
-    setTodo("");
+    if(
+      todo.trim() !== ""
+      )
+      setTodos([...todos, todo]);
+      setTodo("");
   };
 
   const deleteTodo = (item) => {
@@ -25,7 +27,6 @@ const Alternative = () => {
   const clearAll = ()=>{
     setTodos([])
   }
-  let editItem = false
   const editTodo = ()=>{
            setIcon((prev)=> !prev)
   }
@@ -39,6 +40,8 @@ const Alternative = () => {
               type="text"
               value={todo}
               onChange={(e) => setTodo(e.target.value)}
+              placeholder="Add todo"
+              autoComplete="on"
             />
             <button disabled={!todo}>Add</button>
           </form>
@@ -46,14 +49,14 @@ const Alternative = () => {
             {todos.map((todo, index) => {
               return (
                 <li key={index}>
-                  <input type="text" value={todo} disabled={icon ? 'disabled' : ''} />
-                  <button onClick={editTodo} className={ icon ? "fa-solid  fa-pen-to-square" : "fa-solid fa-check"}></button>
-                  <button onClick={() => deleteTodo(todo)}>x</button>
+                  <input type="text" value={todo} disabled={!icon } />
+                  <button onClick={editTodo} className={ !icon ? "fa-solid  fa-pen-to-square" : "fa-solid fa-check"}></button>
+                  <button onClick={() => deleteTodo(todo)} className="fa-solid  fa-x"></button>
                 </li>
               );
             })}
           </ul>
-        <button onClick={clearAll}>Clear All</button>
+        <button onClick={clearAll}>Clear All</button> <span>{todos == '' ? 'No todo ' : `${todos.length} Todo` }</span>
         </div>
       </section>
     </>

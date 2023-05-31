@@ -20,8 +20,6 @@ const AddingToDo = ({ myTodos, setMyTodos }) => {
           <input
             type="text"
             className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
             value={todos}
             onChange={(e) => setTodos(e.target.value)}
           />
